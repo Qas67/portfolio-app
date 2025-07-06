@@ -10,6 +10,8 @@ import bm from './assets/bharat_mandapam.png';
 const App = () => {
   // State to manage the active section for navigation highlighting
   const [activeSection, setActiveSection] = useState('home');
+  // State to manage the mobile menu's open/close state
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Embedded configuration data for the portfolio.
   const configData = {
@@ -85,7 +87,7 @@ const App = () => {
         "imageUrl": vsp, // Using the imported image
         "liveUrl": "https://bitbucket.org/learning_123/visual_search/src/main/",
         "githubUrl": "https://bitbucket.org/learning_123/visual_search/src/main/",
-        "hasLiveUrl": true, // New flag for live URL
+        "hasLiveUrl": false, // New flag for live URL
         "hasGithubUrl": true // New flag for GitHub URL
       },
       {
@@ -106,7 +108,7 @@ const App = () => {
         "liveUrl": "https://booking.indiatradefair.com/",
         "githubUrl": "https://booking.indiatradefair.com/",
         "hasLiveUrl": true,
-        "hasGithubUrl": true
+        "hasGithubUrl": false,
       }
     ],
     "contactInfo": {
@@ -123,6 +125,7 @@ const App = () => {
     if (section) {
       section.scrollIntoView({ behavior: 'smooth' });
       setActiveSection(sectionId); // Update active section for highlighting
+      setIsMenuOpen(false); // Close mobile menu after clicking a link
     }
   };
 
@@ -147,26 +150,21 @@ const App = () => {
   // Effect to update active section based on scroll position
   useEffect(() => {
     const handleScroll = () => {
-      // Removed 'contact' from the sections array for navigation highlighting
       const sections = ['home', 'about', 'experience', 'education', 'skills', 'my-work'];
       let currentActive = 'home';
 
-      // Get the height of the fixed navbar to adjust scroll position check
       const navbar = document.querySelector('nav');
       const navbarHeight = navbar ? navbar.offsetHeight : 0;
 
-      // Iterate through sections in reverse order to prioritize lower sections when scrolling down
       for (let i = sections.length - 1; i >= 0; i--) {
         const sectionId = sections[i];
         const section = document.getElementById(sectionId);
         if (section) {
           const rect = section.getBoundingClientRect();
-          // A section is considered active if its top is within or above the viewport (adjusted for navbar),
-          // and its bottom is also below the adjusted viewport top.
-          const offset = 10; // Small offset to prevent flickering
+          const offset = 10;
           if (rect.top <= navbarHeight + offset && rect.bottom > navbarHeight + offset) {
             currentActive = sectionId;
-            break; // Found the active section, stop
+            break;
           }
         }
       }
@@ -174,8 +172,7 @@ const App = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    // Call handleScroll once on mount to set the initial active section
-    handleScroll();
+    handleScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -183,10 +180,32 @@ const App = () => {
     <div className="min-h-screen bg-gray-900 text-gray-100 font-inter">
       {/* Navigation Bar */}
       <nav className="fixed w-full bg-gray-800 bg-opacity-90 z-50 shadow-lg rounded-b-lg">
-        <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div className="container mx-auto px-6 py-4 flex justify-between items-center relative"> {/* Added relative for absolute positioning of mobile menu */}
           <div className="text-2xl font-bold text-teal-400">{personalInfo.name}</div>
-          <div className="flex space-x-6">
-            {/* Removed 'contact' from the navigation buttons map */}
+
+          {/* Hamburger menu icon for mobile */}
+          <div className="md:hidden">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-gray-300 hover:text-teal-300 focus:outline-none focus:text-teal-300">
+              <svg className="h-8 w-8 fill-current" viewBox="0 0 24 24">
+                {isMenuOpen ? (
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M18.278 16.864a1 1 0 0 1-1.414 1.414L12 13.414l-4.864 4.864a1 1 0 0 1-1.414-1.414L10.586 12 5.722 7.136a1 1 0 0 1 1.414-1.414L12 10.586l4.864-4.864a1 1 0 0 1 1.414 1.414L13.414 12l4.864 4.864z"
+                  />
+                ) : (
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
+
+          {/* Desktop navigation links */}
+          <div className="hidden md:flex space-x-6">
             {['home', 'about', 'experience', 'education', 'skills', 'my-work'].map((section) => (
               <button
                 key={section}
@@ -199,6 +218,22 @@ const App = () => {
             ))}
           </div>
         </div>
+
+        {/* Mobile navigation links (conditionally rendered) */}
+        {isMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-gray-800 bg-opacity-95 shadow-lg py-4 flex flex-col items-center space-y-4 rounded-b-lg">
+            {['home', 'about', 'experience', 'education', 'skills', 'my-work'].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className={`text-lg font-medium transition duration-300 ease-in-out w-full py-2
+                  ${activeSection === section ? 'text-teal-400 border-b-2 border-teal-400' : 'text-gray-300 hover:text-teal-300'}`}
+              >
+                {section === 'my-work' ? 'My Work' : section.charAt(0).toUpperCase() + section.slice(1)}
+              </button>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -227,6 +262,7 @@ const App = () => {
             <div className="md:w-1/3 mb-8 md:mb-0">
               <img
                 src={personalInfo.profileImageUrl}
+                alt="Your Photo"
                 className="rounded-full shadow-xl border-4 border-teal-500 w-64 h-64 object-cover mx-auto"
               />
             </div>
@@ -449,17 +485,6 @@ const App = () => {
                   Send Message
                 </button>
               </div>
-
-              {submissionStatus === 'success' && (
-                <p className="text-center text-green-400 mt-4">
-                  Message sent successfully! Thank you.
-                </p>
-              )}
-              {submissionStatus === 'error' && (
-                <p className="text-center text-red-400 mt-4">
-                  Please fill in all fields before submitting.
-                </p>
-              )}
             </form>
           </div>
         </div>
