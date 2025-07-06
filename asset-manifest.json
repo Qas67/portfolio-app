@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/portfolio-app/static/css/main.7112d9f2.css",
-    "main.js": "/portfolio-app/static/js/main.e961d000.js",
+    "main.css": "/portfolio-app/static/css/main.f71f8092.css",
+    "main.js": "/portfolio-app/static/js/main.892ff577.js",
     "static/js/453.438d9e50.chunk.js": "/portfolio-app/static/js/453.438d9e50.chunk.js",
     "static/media/IMG_5208.jpeg": "/portfolio-app/static/media/IMG_5208.ad3fd79d1cf7afeeaabc.jpeg",
     "static/media/bharat_mandapam.png": "/portfolio-app/static/media/bharat_mandapam.ed0c52b294f766fc4a43.png",
     "static/media/visual_product_search.png": "/portfolio-app/static/media/visual_product_search.98a3adedb5943ed5fa61.png",
     "static/media/umang.png": "/portfolio-app/static/media/umang.271eded9a2d1537230e0.png",
     "index.html": "/portfolio-app/index.html",
-    "main.7112d9f2.css.map": "/portfolio-app/static/css/main.7112d9f2.css.map",
-    "main.e961d000.js.map": "/portfolio-app/static/js/main.e961d000.js.map",
+    "main.f71f8092.css.map": "/portfolio-app/static/css/main.f71f8092.css.map",
+    "main.892ff577.js.map": "/portfolio-app/static/js/main.892ff577.js.map",
     "453.438d9e50.chunk.js.map": "/portfolio-app/static/js/453.438d9e50.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7112d9f2.css",
-    "static/js/main.e961d000.js"
+    "static/css/main.f71f8092.css",
+    "static/js/main.892ff577.js"
   ]
 }
