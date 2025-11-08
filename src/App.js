@@ -22,7 +22,7 @@ const App = () => {
       "aboutMeParagraph1": "Hi, I'm Ridham Gupta — a passionate developer with a strong interest in solving real-world problems through technology. I enjoy diving deep into code, exploring new ideas, and building efficient, scalable applications. With experience in both frontend and backend development, I love creating impactful digital experiences and constantly strive to learn and grow. Whether it's developing user-friendly interfaces or architecting solid backend systems, I aim to deliver clean and thoughtful solutions.",
       "aboutMeParagraph2": "I have experience working with various front-end and back-end technologies, including JavaScript, TypeScript, Angular, Node.js, NESTJS and databases like PostgreSQL. I'm always eager to learn new tools and frameworks to expand my skill set and tackle new challenges.",
       "aboutMeParagraph3": "When I'm not coding, you can find me playing chess, watching movies. I believe in continuous learning and always striving for excellence in everything I do.",
-      "resumeUrl": "https://drive.google.com/file/d/1I6X5Vx7mu4Jl8rYT015bdtjq3kbES5Gu/view?usp=sharing", // Your resume URL
+      "resumeUrl": "https://drive.google.com/file/d/18_cfKvTiLVcyo9D4byVH9FYkmNfheG10/view?usp=drive_link", // Your resume URL
       "linkedinUrl": "https://www.linkedin.com/in/ridham-gupta-3899931b5", // Your LinkedIn URL
       "githubUrl": "https://github.com/Qas67", // Your GitHub URL
       "leetcodeUrl": "https://leetcode.com/Ridham389/", // Your LeetCode URL
@@ -33,20 +33,13 @@ const App = () => {
     "experience": [
       {
         "id": "exp1",
-        "title": "Junior Associate Software Engineer",
+        "title": "Software Engineer",
         "company": "Daffodil Softwares",
-        "duration": "July 2025 - Present",
-        "description": []
-      },
-      {
-        "id": "exp2",
-        "title": "Junior Associate Software Engineer Intern",
-        "company": "Daffodil Softwares",
-        "duration": "Jan 2025 - June 2025",
+        "duration": "Jan 2025 - Present",
         "description": [
-          "Built and maintained RESTful APIs using NestJS and TypeORM for hall booking and service management modules, improving backend scalability and data consistency across 5+ core services",
-          "Implemented dynamic report generation and export functionality (PDF, Excel, CSV) using Puppeteer, EJS, and AWS S3, optimizing file delivery and cleanup through Redis caching and cron jobs",
-          "Developed responsive user interfaces using Angular v16, enhancing user experience and optimized API calls, reducing requests by 25%, improving performance and lowering server load."
+          "Developed responsive user interfaces using Angular v16, enhancing user experience and optimized API calls, reducing requests by 25%, improving performance and lowering server load.",
+          "Built and maintained RESTful APIs using NestJS and TypeORM for hall booking and service management modules, improving backend scalability and data consistency across 5+ core services. ",
+          "Implemented dynamic report generation and export functionality (PDF, Excel, CSV) using Puppeteer, EJS, and AWS S3."
         ]
       }
     ],
